@@ -171,6 +171,10 @@ end
 # Set the directory and the name of the file which will store the lists
 # -----------------
 
+<<<<<<< HEAD:julia/get_fileURL_uuid.jl
+databasedir = "/production/apache/data/emodnet-domains/"
+outputfile = "./eutrophication_file_layers_uuids_v2025.csv"
+=======
 const baseURL = "https://ec.oceanbrowser.net/data/emodnet-domains"
 const threddsbaseURL = "http://opendap.oceanbrowser.net/thredds/dodsC/data/emodnet-domains"
 
@@ -180,6 +184,7 @@ const threddsbaseURL = "http://opendap.oceanbrowser.net/thredds/dodsC/data/emodn
 databasedir = "/media/ctroupin/T7 Shield/data/EMODnet-Chemistry/Eutrophication2024/Results/ogs04"
 
 outputfile = "./listurl_v2025.csv"
+>>>>>>> 1abfcbf6acf24307ada113ffaf32110fdd81eaf7:src/julia/get_fileURL_uuid.jl
 
 datafilelist = get_netcdf_list(databasedir)
 idlist = get_id.(datafilelist)
