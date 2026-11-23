@@ -1,0 +1,27 @@
+# Keeps a fork in sync with the upstream repo
+# Does nothing in the upstream repository itself without a manual "Sync fork" click.
+name: Sync fork with upstream
+
+on:
+  schedule:
+    - cron: '12 3 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Sync master from upstream
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh repo sync "$GITHUB_REPOSITORY" --source gher-uliege/EMODnet-Chemistry --branch master
+      - name: Explain a failed sync
+        if: failure()
+        run: |
+          echo "::error::The sync could not fast-forward. Your fork has commits on master that upstream does not."
+          echo "Move your changes to a branch, then run this workflow again, or use the Sync fork button on GitHub."
